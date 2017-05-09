@@ -3,7 +3,10 @@ package main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import system.QueuingSystem;
+import optimization.Point;
+import optimization.QueuingSystemFunction;
+import optimization.ResponseFunctionInterface;
+import optimization.approximation.ApproximationHandler;
 
 public class Controller
 {
@@ -23,20 +26,31 @@ public class Controller
     @FXML
     public Button runButton;
 
-    public void runButtonClicked() {
+    private ApproximationHandler approximationHandler;
+
+    private void initApproximationHandler() {
         int serviceChannelsCount = Integer.parseInt(this.serviceChannelsCountField.getText());
         long averageServiceTime = Long.parseLong(this.averageServiceTimeField.getText());
         long averageRequestIncomingTime = Long.parseLong(this.averageRequestIncomingTimeField.getText());
-        QueuingSystem queuingSystem = new QueuingSystem(
-                averageRequestIncomingTime,
+
+        ResponseFunctionInterface responseFunction = new QueuingSystemFunction(averageRequestIncomingTime);
+        Point startPoint = new Point(
                 serviceChannelsCount,
-                averageServiceTime
+                averageServiceTime,
+                responseFunction.calculate(serviceChannelsCount, averageServiceTime)
         );
-        queuingSystem.run();
-        this.averageTimeInSystemField.setText(
-                Long.toString(
-                        queuingSystem.calculateAverageTimeInSystem()
-                )
-        );
+
+        this.approximationHandler = new ApproximationHandler(startPoint, responseFunction);
+    }
+
+    private void writeData(Point point) {
+        this.serviceChannelsCountField.setText(Double.toString(point.x1));
+        this.averageServiceTimeField.setText(Double.toString(point.x2));
+        this.averageTimeInSystemField.setText(Double.toString(point.y));
+    }
+
+    public void runButtonClicked() {
+        this.initApproximationHandler();
+        this.writeData(this.approximationHandler.run());
     }
 }
