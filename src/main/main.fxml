@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+      minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="775.0"
+      xmlns="http://javafx.com/javafx/8.0.60" fx:controller="main.Controller">
+    <children>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <children>
+                <HBox alignment="BOTTOM_CENTER" prefHeight="285.0" prefWidth="250.0">
+                    <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="133.0" prefWidth="123.0">
+                            <children>
+                                <Label accessibleRoleDescription="Количество каналов обслуживания:"
+                                       contentDisplay="CENTER" depthTest="ENABLE" ellipsisString=""
+                                       mouseTransparent="true" prefHeight="42.0" prefWidth="123.0"
+                                       text="Количество каналов обслуживания:" wrapText="true"/>
+                                <TextField fx:id="serviceChannelsCountField"/>
+                                <Label prefHeight="17.0" prefWidth="128.0" text="Время обслуживания:"
+                                       textAlignment="CENTER"/>
+                                <TextField fx:id="averageServiceTimeField"/>
+                            </children>
+                            <padding>
+                                <Insets bottom="20.0"/>
+                            </padding>
+                        </VBox>
+                        <ImageView fitHeight="123.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="/resources/arrow.png"/>
+                            </image>
+                        </ImageView>
+                    </children>
+                </HBox>
+                <VBox alignment="CENTER" prefHeight="275.0" prefWidth="200.0">
+                    <children>
+                        <VBox prefHeight="67.0" prefWidth="200.0">
+                            <children>
+                                <Label minHeight="-Infinity" prefHeight="37.0" prefWidth="200.0"
+                                       text="Средний интервал времени поступления заявок:" wrapText="true"/>
+                                <TextField fx:id="averageRequestIncomingTimeField" prefHeight="39.0" prefWidth="200.0"/>
+                            </children>
+                        </VBox>
+                        <ImageView fitHeight="155.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="/resources/arrow_down.png"/>
+                            </image>
+                        </ImageView>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1e2e3c" height="135.0" stroke="BLACK"
+                                   strokeType="INSIDE" width="200.0"/>
+                    </children>
+                </VBox>
+                <HBox alignment="BOTTOM_CENTER" prefHeight="285.0" prefWidth="261.0">
+                    <children>
+                        <ImageView fitHeight="184.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="/resources/arrow.png"/>
+                            </image>
+                        </ImageView>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="285.0" prefWidth="138.0">
+                            <children>
+                                <Label prefHeight="35.0" prefWidth="143.0" text="Среднее время заявки в системе:"
+                                       wrapText="true"/>
+                                <TextField fx:id="averageTimeInSystemField" editable="false"/>
+                            </children>
+                            <padding>
+                                <Insets bottom="40.0"/>
+                            </padding>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <children>
+                <Button fx:id="runButton" onAction="#runButtonClicked" mnemonicParsing="false" prefHeight="25.0"
+                        prefWidth="151.0" text="Запуск"/>
+            </children>
+        </HBox>
+    </children>
+    <padding>
+        <Insets top="20.0"/>
+    </padding>
+</VBox>
