@@ -44,9 +44,9 @@ public class Controller
     }
 
     private void writeData(Point point) {
-        this.serviceChannelsCountField.setText(Double.toString(point.x1));
-        this.averageServiceTimeField.setText(Double.toString(point.x2));
-        this.averageTimeInSystemField.setText(Double.toString(point.y));
+        this.serviceChannelsCountField.setText(Long.toString((long) point.x1));
+        this.averageServiceTimeField.setText(Long.toString((long) point.x2));
+        this.averageTimeInSystemField.setText(Long.toString((long) point.y));
     }
 
     public void runButtonClicked() {

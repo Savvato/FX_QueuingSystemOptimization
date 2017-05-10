@@ -8,7 +8,7 @@ import optimization.matrix.Matrix;
 
 public class ApproximationHandler
 {
-    private static final double POINTS_DELTA = 0.05;
+    private static final double POINTS_DELTA = 10;
 
     private Point startPoint;
 
@@ -37,8 +37,9 @@ public class ApproximationHandler
             gradient = this.calculateGradient(formula);
             oldPoint = this.currentCentralPoint;
             this.moveCentralPoint(gradient);
+            System.out.println(this.currentCentralPoint.y);
         }
-        while (oldPoint.y < this.currentCentralPoint.y);
+        while (oldPoint.y >= this.currentCentralPoint.y);
 
         return oldPoint;
     }
@@ -62,8 +63,8 @@ public class ApproximationHandler
      * @param gradient
      */
     private void moveCentralPoint(double[] gradient) {
-        double newX1 = this.currentCentralPoint.x1 + gradient[0];
-        double newX2 = this.currentCentralPoint.x2 + gradient[1];
+        double newX1 = this.currentCentralPoint.x1 - gradient[0];
+        double newX2 = this.currentCentralPoint.x2 - gradient[1];
         double newY = this.responseFunctionInterface.calculate(newX1, newX2);
         this.currentCentralPoint = new Point(newX1, newX2, newY);
     }

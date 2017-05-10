@@ -111,7 +111,6 @@ public class QueuingSystem
         }
         long sumTimeForRequests = 0;
         for (Request request : this.sink) {
-            request.log();
             sumTimeForRequests += request.getTimeInSystem();
         }
         return sumTimeForRequests / this.sink.size();
