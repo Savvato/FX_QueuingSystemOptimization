@@ -8,7 +8,7 @@ import optimization.matrix.Matrix;
 
 public class ApproximationHandler
 {
-    private static final double POINTS_DELTA = 10;
+    private static final int SERVICE_CHANNELS_DELTA = 1;
 
     private Point startPoint;
 
@@ -77,24 +77,48 @@ public class ApproximationHandler
     private Point[] getTrainingPoints() {
         return new Point[]{
                 new Point(
-                        currentCentralPoint.x1 + POINTS_DELTA,
-                        currentCentralPoint.x2 + POINTS_DELTA,
-                        responseFunctionInterface.calculate(currentCentralPoint.x1 + POINTS_DELTA, currentCentralPoint.x2 + POINTS_DELTA)
+                        currentCentralPoint.x1 + SERVICE_CHANNELS_DELTA > 0 ?
+                                currentCentralPoint.x1 + SERVICE_CHANNELS_DELTA : 1,
+                        currentCentralPoint.x2 + Math.sqrt(currentCentralPoint.x2) > 0 ?
+                                currentCentralPoint.x2 + Math.sqrt(currentCentralPoint.x2) : 1,
+                        responseFunctionInterface.calculate(
+                                currentCentralPoint.x1 + SERVICE_CHANNELS_DELTA > 0 ?
+                                        currentCentralPoint.x1 + SERVICE_CHANNELS_DELTA : 1,
+                                currentCentralPoint.x2 + SERVICE_CHANNELS_DELTA)
                 ),
                 new Point(
-                        currentCentralPoint.x1 - POINTS_DELTA,
-                        currentCentralPoint.x2 - POINTS_DELTA,
-                        responseFunctionInterface.calculate(currentCentralPoint.x1 - POINTS_DELTA, currentCentralPoint.x2 - POINTS_DELTA)
+                        currentCentralPoint.x1 - SERVICE_CHANNELS_DELTA > 0 ?
+                                currentCentralPoint.x1 - SERVICE_CHANNELS_DELTA : 1,
+                        currentCentralPoint.x2 - Math.sqrt(currentCentralPoint.x2) > 0 ?
+                                currentCentralPoint.x2 - Math.sqrt(currentCentralPoint.x2) : 1,
+                        responseFunctionInterface.calculate(
+                                currentCentralPoint.x1 - SERVICE_CHANNELS_DELTA > 0 ?
+                                        currentCentralPoint.x1 - SERVICE_CHANNELS_DELTA : 1,
+                                currentCentralPoint.x2 - Math.sqrt(currentCentralPoint.x2) > 0 ?
+                                        currentCentralPoint.x2 - Math.sqrt(currentCentralPoint.x2) : 1
+                        )
                 ),
                 new Point(
-                        currentCentralPoint.x1 + POINTS_DELTA,
-                        currentCentralPoint.x2 - POINTS_DELTA,
-                        responseFunctionInterface.calculate(currentCentralPoint.x1 + POINTS_DELTA, currentCentralPoint.x2 - POINTS_DELTA)
+                        currentCentralPoint.x1 + SERVICE_CHANNELS_DELTA > 0 ?
+                                currentCentralPoint.x1 + SERVICE_CHANNELS_DELTA : 1,
+                        currentCentralPoint.x2 - Math.sqrt(currentCentralPoint.x2) > 0 ?
+                                currentCentralPoint.x2 - Math.sqrt(currentCentralPoint.x2) : 1,
+                        responseFunctionInterface.calculate(
+                                currentCentralPoint.x1 + SERVICE_CHANNELS_DELTA > 0 ?
+                                        currentCentralPoint.x1 + SERVICE_CHANNELS_DELTA : 1,
+                                currentCentralPoint.x2 - Math.sqrt(currentCentralPoint.x2) > 0 ?
+                                        currentCentralPoint.x2 - Math.sqrt(currentCentralPoint.x2) : 1)
                 ),
                 new Point(
-                        currentCentralPoint.x1 - POINTS_DELTA,
-                        currentCentralPoint.x2 + POINTS_DELTA,
-                        responseFunctionInterface.calculate(currentCentralPoint.x1 - POINTS_DELTA, currentCentralPoint.x2 + POINTS_DELTA)
+                        currentCentralPoint.x1 - SERVICE_CHANNELS_DELTA > 0 ?
+                                currentCentralPoint.x1 - SERVICE_CHANNELS_DELTA : 1,
+                        currentCentralPoint.x2 + Math.sqrt(currentCentralPoint.x2) > 0 ?
+                                currentCentralPoint.x2 + Math.sqrt(currentCentralPoint.x2) : 1,
+                        responseFunctionInterface.calculate(
+                                currentCentralPoint.x1 - SERVICE_CHANNELS_DELTA > 0 ?
+                                        currentCentralPoint.x1 - SERVICE_CHANNELS_DELTA : 1,
+                                currentCentralPoint.x2 + Math.sqrt(currentCentralPoint.x2) > 0 ?
+                                        currentCentralPoint.x2 + Math.sqrt(currentCentralPoint.x2) : 1)
                 )
         };
     }
